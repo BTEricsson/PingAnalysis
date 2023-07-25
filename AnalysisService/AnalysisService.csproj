@@ -85,7 +85,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PingNode\Business.csproj">
+    <ProjectReference Include="..\Business\Business.csproj">
       <Project>{7670275f-42e9-4ae2-a571-4cc11188d334}</Project>
       <Name>Business</Name>
     </ProjectReference>
