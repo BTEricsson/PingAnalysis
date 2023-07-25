@@ -129,11 +129,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PingNode\Business.csproj">
+    <ProjectReference Include="..\Business\Business.csproj">
       <Project>{7670275f-42e9-4ae2-a571-4cc11188d334}</Project>
       <Name>Business</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PingService\AnalysisService.csproj">
+    <ProjectReference Include="..\AnalysisService\AnalysisService.csproj">
       <Project>{1e7ab543-db90-42c1-87a4-f6b1c7493c5d}</Project>
       <Name>AnalysisService</Name>
     </ProjectReference>
