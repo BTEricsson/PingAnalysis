@@ -39,6 +39,8 @@
             this.LaLogPath = new System.Windows.Forms.Label();
             this.btnLogPath = new System.Windows.Forms.Button();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.label4 = new System.Windows.Forms.Label();
+            this.CbPingTimer = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,7 +67,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(693, 375);
+            this.btnSave.Location = new System.Drawing.Point(693, 423);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(95, 23);
             this.btnSave.TabIndex = 8;
@@ -146,11 +148,37 @@
             this.btnLogPath.UseVisualStyleBackColor = true;
             this.btnLogPath.Click += new System.EventHandler(this.button1_Click);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(477, 368);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(77, 13);
+            this.label4.TabIndex = 19;
+            this.label4.Text = "Success Timer";
+            // 
+            // CbPingTimer
+            // 
+            this.CbPingTimer.FormattingEnabled = true;
+            this.CbPingTimer.Items.AddRange(new object[] {
+            "1",
+            "5",
+            "10",
+            "15",
+            "30",
+            "60"});
+            this.CbPingTimer.Location = new System.Drawing.Point(560, 365);
+            this.CbPingTimer.Name = "CbPingTimer";
+            this.CbPingTimer.Size = new System.Drawing.Size(121, 21);
+            this.CbPingTimer.TabIndex = 21;
+            // 
             // Config
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(798, 410);
+            this.ClientSize = new System.Drawing.Size(798, 458);
+            this.Controls.Add(this.CbPingTimer);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.btnLogPath);
             this.Controls.Add(this.LaLogPath);
             this.Controls.Add(this.label3);
@@ -182,5 +210,7 @@
         private System.Windows.Forms.Label LaLogPath;
         private System.Windows.Forms.Button btnLogPath;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox CbPingTimer;
     }
 }

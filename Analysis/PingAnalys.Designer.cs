@@ -28,13 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnServiceAdmin = new System.Windows.Forms.Button();
             this.btnPingConfig = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.RtbPingLog = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // btnServiceAdmin
             // 
-            this.btnServiceAdmin.Location = new System.Drawing.Point(612, 24);
+            this.btnServiceAdmin.Location = new System.Drawing.Point(667, 24);
             this.btnServiceAdmin.Name = "btnServiceAdmin";
             this.btnServiceAdmin.Size = new System.Drawing.Size(121, 23);
             this.btnServiceAdmin.TabIndex = 5;
@@ -44,7 +47,7 @@
             // 
             // btnPingConfig
             // 
-            this.btnPingConfig.Location = new System.Drawing.Point(612, 62);
+            this.btnPingConfig.Location = new System.Drawing.Point(667, 62);
             this.btnPingConfig.Name = "btnPingConfig";
             this.btnPingConfig.Size = new System.Drawing.Size(121, 23);
             this.btnPingConfig.TabIndex = 6;
@@ -52,11 +55,21 @@
             this.btnPingConfig.UseVisualStyleBackColor = true;
             this.btnPingConfig.Click += new System.EventHandler(this.btnTraceEdit_Click);
             // 
+            // RtbPingLog
+            // 
+            this.RtbPingLog.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.RtbPingLog.Location = new System.Drawing.Point(12, 24);
+            this.RtbPingLog.Name = "RtbPingLog";
+            this.RtbPingLog.Size = new System.Drawing.Size(638, 317);
+            this.RtbPingLog.TabIndex = 8;
+            this.RtbPingLog.Text = "";
+            // 
             // PingAnalysis
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(798, 367);
+            this.Controls.Add(this.RtbPingLog);
             this.Controls.Add(this.btnPingConfig);
             this.Controls.Add(this.btnServiceAdmin);
             this.Name = "PingAnalysis";
@@ -68,6 +81,8 @@
         #endregion
         private System.Windows.Forms.Button btnServiceAdmin;
         private System.Windows.Forms.Button btnPingConfig;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.RichTextBox RtbPingLog;
     }
 }
 

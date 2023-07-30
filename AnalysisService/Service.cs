@@ -26,9 +26,10 @@ namespace AnalysisService
             DownIP = string.Empty;
             pingNode.Load();
 
+            WriteToFile($"{Environment.NewLine}------------------------------------------------------");
             WriteToFile($"{Environment.NewLine}Service is started at " + DateTime.Now);
             timer.Elapsed += new ElapsedEventHandler(OnElapsedTime);
-            timer.Interval = 60000;
+            timer.Interval = 60000 * pingNode.PingTimer;
             timer.Enabled = true;
 
             PingHost();
@@ -118,11 +119,11 @@ namespace AnalysisService
             if (status == IPStatus.Success)
             {
                 if (!UpdateFile("Ping"))
-                    WriteToFile($"{Environment.NewLine}Host Ping @ {node.IPAddress}, Status: {status} {DateTimeString()}");
+                    WriteToFile($"{Environment.NewLine}Ping Host @ IP: {node.IPAddress}, Status: {status} {DateTimeString()}");
             }
             else
             {
-                WriteToFile($"{Environment.NewLine}Host Ping @ {node.IPAddress}, Status: {status} {DateTimeString()}");
+                WriteToFile($"{Environment.NewLine}Ping Host @ IP {node.IPAddress}, Status: {status} {DateTimeString()}");
                 PingNetDown();
             } 
                 
