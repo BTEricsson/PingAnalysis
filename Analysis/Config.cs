@@ -20,6 +20,7 @@ namespace Analysis
         {
             LoadData();
             InitView();
+            cbURL.Text = pingData.Name;
         }
 
         private void btnTrace_Click(object sender, EventArgs e)
@@ -42,6 +43,10 @@ namespace Analysis
 
             LaHost.Text = pingData.Name;
             LaLogPath.Text = pingData.LogPath;
+
+            if (pingData.PingTimer == 0)
+                pingData.PingTimer = 5;
+            CbPingTimer.Text = pingData.PingTimer.ToString();
         }
 
         private void UpdateGridSource()
@@ -88,6 +93,7 @@ namespace Analysis
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            pingData.PingTimer = int.Parse(CbPingTimer.Text);
             pingData.SaveOrUpdate();
         }
 
