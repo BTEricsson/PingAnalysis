@@ -21,6 +21,7 @@ namespace Analysis
             timer1.Enabled = true;
 
             UpdatePingLog();
+            UpdateServiceStatus();
         }
 
         private void btnServiceAdmin_Click(object sender, EventArgs e)
@@ -38,6 +39,16 @@ namespace Analysis
         private void UpdateTime(object sender, EventArgs e)
         {
             UpdatePingLog();
+            UpdateServiceStatus();
+        }
+
+        private void UpdateServiceStatus()
+        {
+            string ServiceName = "PingAnalysisService";
+            string serviceStatus = ServiceHelper.GetServiceStatus(ServiceName, Environment.MachineName);
+            if (serviceStatus == string.Empty)
+                serviceStatus = "not installed";
+            LaServiceStatus.Text = serviceStatus;
         }
 
         private void UpdatePingLog()
