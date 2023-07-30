@@ -20,7 +20,6 @@ namespace Analysis
         {
             LoadData();
             InitView();
-            cbURL.Text = pingData.Name;
         }
 
         private void btnTrace_Click(object sender, EventArgs e)
@@ -40,6 +39,8 @@ namespace Analysis
         {
             UpdateGridSource();
             SetGridLoadFinishProperty();
+
+            cbURL.Text = pingData.Name;
 
             LaHost.Text = pingData.Name;
             LaLogPath.Text = pingData.LogPath;

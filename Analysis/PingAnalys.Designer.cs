@@ -33,11 +33,13 @@
             this.btnPingConfig = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.RtbPingLog = new System.Windows.Forms.RichTextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.LaServiceStatus = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnServiceAdmin
             // 
-            this.btnServiceAdmin.Location = new System.Drawing.Point(667, 24);
+            this.btnServiceAdmin.Location = new System.Drawing.Point(665, 38);
             this.btnServiceAdmin.Name = "btnServiceAdmin";
             this.btnServiceAdmin.Size = new System.Drawing.Size(121, 23);
             this.btnServiceAdmin.TabIndex = 5;
@@ -47,7 +49,7 @@
             // 
             // btnPingConfig
             // 
-            this.btnPingConfig.Location = new System.Drawing.Point(667, 62);
+            this.btnPingConfig.Location = new System.Drawing.Point(665, 76);
             this.btnPingConfig.Name = "btnPingConfig";
             this.btnPingConfig.Size = new System.Drawing.Size(121, 23);
             this.btnPingConfig.TabIndex = 6;
@@ -58,23 +60,44 @@
             // RtbPingLog
             // 
             this.RtbPingLog.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.RtbPingLog.Location = new System.Drawing.Point(12, 24);
+            this.RtbPingLog.Location = new System.Drawing.Point(10, 38);
             this.RtbPingLog.Name = "RtbPingLog";
             this.RtbPingLog.Size = new System.Drawing.Size(638, 317);
             this.RtbPingLog.TabIndex = 8;
             this.RtbPingLog.Text = "";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(7, 14);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(79, 13);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Service Status:";
+            // 
+            // LaServiceStatus
+            // 
+            this.LaServiceStatus.AutoSize = true;
+            this.LaServiceStatus.Location = new System.Drawing.Point(92, 14);
+            this.LaServiceStatus.Name = "LaServiceStatus";
+            this.LaServiceStatus.Size = new System.Drawing.Size(35, 13);
+            this.LaServiceStatus.TabIndex = 10;
+            this.LaServiceStatus.Text = "label2";
             // 
             // PingAnalysis
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(798, 367);
+            this.Controls.Add(this.LaServiceStatus);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.RtbPingLog);
             this.Controls.Add(this.btnPingConfig);
             this.Controls.Add(this.btnServiceAdmin);
             this.Name = "PingAnalysis";
             this.Text = "Ping Analysis";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -83,6 +106,8 @@
         private System.Windows.Forms.Button btnPingConfig;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.RichTextBox RtbPingLog;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label LaServiceStatus;
     }
 }
 
