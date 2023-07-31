@@ -79,9 +79,10 @@
             // LaServiceStatus
             // 
             this.LaServiceStatus.AutoSize = true;
+            this.LaServiceStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LaServiceStatus.Location = new System.Drawing.Point(97, 14);
             this.LaServiceStatus.Name = "LaServiceStatus";
-            this.LaServiceStatus.Size = new System.Drawing.Size(35, 13);
+            this.LaServiceStatus.Size = new System.Drawing.Size(41, 13);
             this.LaServiceStatus.TabIndex = 10;
             this.LaServiceStatus.Text = "label2";
             // 
