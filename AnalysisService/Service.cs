@@ -66,7 +66,7 @@ namespace AnalysisService
                     if (DownIP != string.Empty)
                         continue;
 
-                    var status = NodePing(IP);
+                    var status = GetIPStatus(IP);
                     if (status == IPStatus.Success)
                     {
                         LogFileBase.WriteToFile(pingNode.LogPath, $"{Environment.NewLine}Response UP @ IP: {IP} {DateTimeString.GetDateTimeString()}");
@@ -80,7 +80,7 @@ namespace AnalysisService
             }
             else
             {
-                var status = NodePing(DownIP);
+                var status = GetIPStatus(DownIP);
                 if (status == IPStatus.Success)
                 {
                     DownIP = string.Empty;
@@ -113,30 +113,30 @@ namespace AnalysisService
                 return;
             }
 
-            var node = GetHost();
+            var Host = GetHost();
 
-            if (node == null)
+            if (Host == null)
             {
                 LogFileBase.WriteToFile(pingNode.LogPath, $"{Environment.NewLine}No active Host to ping. " + DateTime.Now);
                 return;
             }
 
-            var status = NodePing(node.IPAddress);
+            var status = GetIPStatus(Host.IPAddress);
 
             if (status == IPStatus.Success)
             {
                 if (!LogFileBase.WriteLastUpdateToFile(pingNode.LogPath, "Ping"))
-                    LogFileBase.WriteToFile(pingNode.LogPath, $"{Environment.NewLine}Ping Host @ IP: {node.IPAddress}, Status: {status} {DateTimeString.GetDateTimeString()}");
+                    LogFileBase.WriteToFile(pingNode.LogPath, $"{Environment.NewLine}Ping Host @ IP: {Host.IPAddress}, Status: {status} {DateTimeString.GetDateTimeString()}");
             }
             else
             {
-                LogFileBase.WriteToFile(pingNode.LogPath, $"{Environment.NewLine}Ping Host @ IP {node.IPAddress}, Status: {status} {DateTimeString.GetDateTimeString()}");
+                LogFileBase.WriteToFile(pingNode.LogPath, $"{Environment.NewLine}Ping Host @ IP {Host.IPAddress}, Status: {status} {DateTimeString.GetDateTimeString()}");
                 PingNetDown();
             }
 
         }
 
-        private IPStatus NodePing(string IPAddress)
+        private IPStatus GetIPStatus(string IPAddress)
         {
             const int timeout = 10000;
             const int maxTTL = 30;
