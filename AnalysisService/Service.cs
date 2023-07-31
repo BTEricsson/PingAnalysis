@@ -8,6 +8,7 @@ using System.ServiceProcess;
 using System.Timers;
 using Business;
 
+
 namespace AnalysisService
 {
     public partial class Service : ServiceBase
@@ -26,8 +27,8 @@ namespace AnalysisService
             DownIP = string.Empty;
             pingNode.Load();
 
-            WriteToFile($"{Environment.NewLine}------------------------------------------------------");
-            WriteToFile($"{Environment.NewLine}Service is started at " + DateTime.Now);
+            LogFileBase.WriteToFile(pingNode.LogPath, $"{Environment.NewLine}------------------------------------------------------");
+            LogFileBase.WriteToFile(pingNode.LogPath, $"{Environment.NewLine}Service is started at " + DateTime.Now);
             timer.Elapsed += new ElapsedEventHandler(OnElapsedTime);
             timer.Interval = 60000 * pingNode.PingTimer;
             timer.Enabled = true;
@@ -37,7 +38,7 @@ namespace AnalysisService
 
         protected override void OnStop()
         {
-            WriteToFile($"{Environment.NewLine}Service is stopped at " + DateTime.Now);
+            LogFileBase.WriteToFile(pingNode.LogPath, $"{Environment.NewLine}Service is stopped at " + DateTime.Now);
         }
 
         private void OnElapsedTime(object source, ElapsedEventArgs e)
@@ -45,12 +46,14 @@ namespace AnalysisService
             PingHost();
         }
 
+
+
         private void PingNetDown()
         {
             if (DownIP == string.Empty)
             {
 
-                WriteToFile($"{Environment.NewLine}Host not responding");
+                LogFileBase.WriteToFile(pingNode.LogPath, $"{Environment.NewLine}Host not responding");
 
                 IList<string> IPAdress = GetNodesIP();
 
@@ -62,12 +65,12 @@ namespace AnalysisService
                     var status = NodePing(IP);
                     if (status == IPStatus.Success)
                     {
-                        WriteToFile($"{Environment.NewLine}Response UP @ IP: {IP} {DateTimeString()}");
+                        LogFileBase.WriteToFile(pingNode.LogPath, $"{Environment.NewLine}Response UP @ IP: {IP} {DateTimeString.GetDateTimeString()}");
                     }
                     else
                     {
                         DownIP = IP;
-                        WriteToFile($"{Environment.NewLine}Response Down @ IP: {IP} {DateTimeString()}");
+                        LogFileBase.WriteToFile(pingNode.LogPath, $"{Environment.NewLine}Response Down @ IP: {IP} {DateTimeString.GetDateTimeString()}");
                     }
                 }
             }
@@ -81,8 +84,8 @@ namespace AnalysisService
                 }
                 else if (status != IPStatus.Success)
                 {
-                    if (!UpdateFile("Down"))
-                        WriteToFile($"{Environment.NewLine}Response Down @ IP: {DownIP} {DateTimeString()}");
+                    if (!LogFileBase.WriteLastUpdateToFile(pingNode.LogPath, "Down"))
+                        LogFileBase.WriteToFile(pingNode.LogPath, $"{Environment.NewLine}Response Down @ IP: {DownIP} {DateTimeString.GetDateTimeString()}");
                 }
             }
         }
@@ -110,7 +113,7 @@ namespace AnalysisService
 
             if (node == null)
             {
-                WriteToFile($"{Environment.NewLine}No active Host to ping. " + DateTime.Now);
+                LogFileBase.WriteToFile(pingNode.LogPath, $"{Environment.NewLine}No active Host to ping. " + DateTime.Now);
                 return;
             }
 
@@ -118,24 +121,16 @@ namespace AnalysisService
 
             if (status == IPStatus.Success)
             {
-                if (!UpdateFile("Ping"))
-                    WriteToFile($"{Environment.NewLine}Ping Host @ IP: {node.IPAddress}, Status: {status} {DateTimeString()}");
+                if (!LogFileBase.WriteLastUpdateToFile(pingNode.LogPath, "Ping"))
+                    LogFileBase.WriteToFile(pingNode.LogPath, $"{Environment.NewLine}Ping Host @ IP: {node.IPAddress}, Status: {status} {DateTimeString.GetDateTimeString()}");
             }
             else
             {
-                WriteToFile($"{Environment.NewLine}Ping Host @ IP {node.IPAddress}, Status: {status} {DateTimeString()}");
+                LogFileBase.WriteToFile(pingNode.LogPath, $"{Environment.NewLine}Ping Host @ IP {node.IPAddress}, Status: {status} {DateTimeString.GetDateTimeString()}");
                 PingNetDown();
-            } 
-                
+            }
+
         }
-
-
-        private string DateTimeString()
-        {
-            return DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-        }
-
-
 
         private IPStatus NodePing(string IPAddress)
         {
@@ -160,69 +155,6 @@ namespace AnalysisService
             return Assembly.GetExecutingAssembly().Location;
         }
 
-
-        private bool UpdateFile(string Type)
-        {
-            string filepath = pingNode.LogPath + "\\Logs\\PingLog_" + DateTime.Now.Date.ToString("yyyy-MM").Replace('/', '_') + ".txt";
-            var allLines = File.ReadAllLines(filepath).ToList();
-            var lastLine = allLines.Last();
-            string updateLine = string.Empty;
-
-            if (!lastLine.Contains(Type))
-                return false;
-
-            try
-            {
-                if (lastLine.Contains("Last"))
-                {
-                    updateLine = lastLine.Substring(0, lastLine.IndexOf("Last")) + "Last Update: " + DateTimeString();
-                }
-                else
-                {
-                    updateLine = lastLine + $" Last Update: {DateTimeString()}";
-                }
-                var newLines = allLines.GetRange(0, allLines.Count - 1);
-                File.WriteAllLines(filepath, newLines);
-
-                using (StreamWriter sw = File.AppendText(filepath))
-                {
-                    sw.Write(updateLine);
-                }
-            }
-            catch (Exception ex)
-            {
-                WriteToFile(Environment.NewLine + "Ex: " + ex.Message);
-                return false;
-            }
-
-            return true;
-        }
-
-        private void WriteToFile(string Message)
-        {
-            string path = pingNode.LogPath + "\\Logs";
-            if (!Directory.Exists(path))
-            {
-                Directory.CreateDirectory(path);
-            }
-
-            string filepath = pingNode.LogPath + "\\Logs\\PingLog_" + DateTime.Now.Date.ToString("yyyy-MM").Replace('/', '_') + ".txt";
-
-            if (!File.Exists(filepath))
-            {
-                using (StreamWriter sw = File.CreateText(filepath))
-                {
-                    sw.Write(Message);
-                }
-            }
-            else
-            {
-                using (StreamWriter sw = File.AppendText(filepath))
-                {
-                    sw.Write(Message);
-                }
-            }
-        }
-
     }
+
 }

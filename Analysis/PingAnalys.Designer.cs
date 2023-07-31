@@ -69,16 +69,17 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(7, 14);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(79, 13);
+            this.label1.Size = new System.Drawing.Size(94, 13);
             this.label1.TabIndex = 9;
             this.label1.Text = "Service Status:";
             // 
             // LaServiceStatus
             // 
             this.LaServiceStatus.AutoSize = true;
-            this.LaServiceStatus.Location = new System.Drawing.Point(92, 14);
+            this.LaServiceStatus.Location = new System.Drawing.Point(97, 14);
             this.LaServiceStatus.Name = "LaServiceStatus";
             this.LaServiceStatus.Size = new System.Drawing.Size(35, 13);
             this.LaServiceStatus.TabIndex = 10;
