@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.Timers;
 using Business;
 using System.IO;
 using System.Linq;
@@ -9,31 +8,36 @@ namespace Analysis
 {
     public partial class PingAnalysis :  Form
     {
-        PingNode pingNode = new PingNode();
+        PingConfig pingNode = new PingConfig();
 
         public PingAnalysis()
         {
             InitializeComponent();
             pingNode.Load();
 
-            timer1.Tick += UpdateTime;
-            timer1.Interval = 10000;
-            timer1.Enabled = true;
+            SetTimer();
 
             UpdatePingLog();
-            UpdateServiceStatus();
+            UpdateServiceStatus();   
         }
 
-        private void btnServiceAdmin_Click(object sender, EventArgs e)
+        private void BtnServiceAdmin_Click(object sender, EventArgs e)
         {
             ServiceAdmin ServiceAdmin = new ServiceAdmin();
             ServiceAdmin.Show();
         }
 
-        private void btnTraceEdit_Click(object sender, EventArgs e)
+        private void BtnPingConfig_Click(object sender, EventArgs e)
         {
-            Config Trace = new Config();
+            ConfigWF Trace = new ConfigWF();
             Trace.Show();
+        }
+
+        void SetTimer()
+        {
+            timer1.Tick += UpdateTime;
+            timer1.Interval = 10000;
+            timer1.Enabled = true;
         }
 
         private void UpdateTime(object sender, EventArgs e)

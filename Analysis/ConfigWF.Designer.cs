@@ -1,6 +1,6 @@
 ﻿namespace Analysis
 {
-    partial class Config
+    partial class ConfigWF
     {
         /// <summary>
         /// Required designer variable.

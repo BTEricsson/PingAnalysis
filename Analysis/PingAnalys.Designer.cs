@@ -45,7 +45,7 @@
             this.btnServiceAdmin.TabIndex = 5;
             this.btnServiceAdmin.Text = "Service Admin";
             this.btnServiceAdmin.UseVisualStyleBackColor = true;
-            this.btnServiceAdmin.Click += new System.EventHandler(this.btnServiceAdmin_Click);
+            this.btnServiceAdmin.Click += new System.EventHandler(this.BtnServiceAdmin_Click);
             // 
             // btnPingConfig
             // 
@@ -55,7 +55,7 @@
             this.btnPingConfig.TabIndex = 6;
             this.btnPingConfig.Text = "Ping Config";
             this.btnPingConfig.UseVisualStyleBackColor = true;
-            this.btnPingConfig.Click += new System.EventHandler(this.btnTraceEdit_Click);
+            this.btnPingConfig.Click += new System.EventHandler(this.BtnPingConfig_Click);
             // 
             // RtbPingLog
             // 
