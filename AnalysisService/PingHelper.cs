@@ -6,18 +6,13 @@ using Business;
 
 namespace AnalysisService
 {
-    public class ServiceHelper
+    public class PingHelper
     {
-
         private readonly Config config = new Config();
-
-        public static string ServiceName = "PingAnalysisService";
 
         public string DownIP = string.Empty;
         public int GetTimer { get { return config.PingTimer; } }
         public string GetLogPathAndFile { get { return config.LogPathAndFile; } }
-
-
 
         public void InitPingNode()
         {

@@ -6,7 +6,6 @@ namespace AnalysisService
 {
     public static class LogFileBase
     {
-
         public static bool WriteLastUpdateToFile(string LogPathAndFile, string Type)
         {
             var allLines = File.ReadAllLines(LogPathAndFile).ToList();

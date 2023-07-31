@@ -8,7 +8,9 @@ namespace AnalysisService
     public partial class Service : ServiceBase
     {
         readonly Timer timer = new Timer();
-        readonly ServiceHelper serviceHelper = new ServiceHelper();
+        readonly PingHelper serviceHelper = new PingHelper();
+
+        public static string GetServiceName = "PingAnalysisService";
 
         public Service()
         {

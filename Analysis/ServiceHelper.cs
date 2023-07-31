@@ -6,7 +6,7 @@ namespace Analysis
 {
     public class ServiceHelper
     {
-        static readonly string ServiceName = AnalysisService.ServiceHelper.ServiceName;
+        static readonly string ServiceName = AnalysisService.Service.GetServiceName;
 
         public static void StartService(int timeoutMilliseconds)
         {
