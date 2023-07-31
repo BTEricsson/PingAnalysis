@@ -1,5 +1,4 @@
 ﻿using System.Drawing;
-using System.ServiceProcess;
 
 namespace Analysis.Extentions
 {
@@ -12,16 +11,12 @@ namespace Analysis.Extentions
             {
                 case "not installed":
                     return Color.OrangeRed;
-                    break;
                 case "Running":
                     return Color.Green;
-                    break;
                 case "Stopped":
                     return Color.Red;
-                    break;
                 default:
                     return Color.Black;
-                    break;
             }
         }
     }
