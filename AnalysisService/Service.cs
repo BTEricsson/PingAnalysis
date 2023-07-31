@@ -19,8 +19,8 @@ namespace AnalysisService
         {
             serviceHelper.InitPingNode();
 
-            LogFileBase.WriteToFile(serviceHelper.GetLogPath, $"------------------------------------------------------");
-            LogFileBase.WriteToFile(serviceHelper.GetLogPath, $"Service is started at " + DateTime.Now);
+            LogFileBase.WriteToFile(serviceHelper.GetLogPathAndFile, $"------------------------------------------------------");
+            LogFileBase.WriteToFile(serviceHelper.GetLogPathAndFile, $"Service is started at " + DateTime.Now);
 
             SetTimer();
 
@@ -29,7 +29,7 @@ namespace AnalysisService
 
         protected override void OnStop()
         {
-            LogFileBase.WriteToFile(serviceHelper.GetLogPath, $"Service is stopped at " + DateTime.Now);
+            LogFileBase.WriteToFile(serviceHelper.GetLogPathAndFile, $"Service is stopped at " + DateTime.Now);
         }
 
         private void OnElapsedTime(object source, ElapsedEventArgs e)

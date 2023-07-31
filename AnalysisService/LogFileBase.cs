@@ -7,10 +7,9 @@ namespace AnalysisService
     public static class LogFileBase
     {
 
-        public static bool WriteLastUpdateToFile(string LogPath, string Type)
+        public static bool WriteLastUpdateToFile(string LogPathAndFile, string Type)
         {
-            string filepath = LogPath + "\\Logs\\PingLog_" + DateTime.Now.Date.ToString("yyyy-MM").Replace('/', '_') + ".txt";
-            var allLines = File.ReadAllLines(filepath).ToList();
+            var allLines = File.ReadAllLines(LogPathAndFile).ToList();
             var lastLine = allLines.Last();
             string updateLine = string.Empty;
 
@@ -28,42 +27,40 @@ namespace AnalysisService
                     updateLine = lastLine + $" Last Update: {DateTimeString.GetDateTimeString()}";
                 }
                 var newLines = allLines.GetRange(0, allLines.Count - 1);
-                File.WriteAllLines(filepath, newLines);
+                File.WriteAllLines(LogPathAndFile, newLines);
 
-                using (StreamWriter sw = File.AppendText(filepath))
+                using (StreamWriter sw = File.AppendText(LogPathAndFile))
                 {
                     sw.Write(updateLine);
                 }
             }
             catch (Exception ex)
             {
-                WriteToFile(LogPath, "Ex: " + ex.Message);
+                WriteToFile(LogPathAndFile, "Ex: " + ex.Message);
                 return false;
             }
 
             return true;
         }
 
-        public static void WriteToFile(string LogPath, string Message)
+        public static void WriteToFile(string LogPathAndFile, string Message)
         {
-            string path = LogPath + "\\Logs";
+            string path = Path.GetDirectoryName(LogPathAndFile);
             if (!Directory.Exists(path))
             {
                 Directory.CreateDirectory(path);
             }
 
-            string filepath = LogPath + "\\Logs\\PingLog_" + DateTime.Now.Date.ToString("yyyy-MM").Replace('/', '_') + ".txt";
-
-            if (!File.Exists(filepath))
+            if (!File.Exists(LogPathAndFile))
             {
-                using (StreamWriter sw = File.CreateText(filepath))
+                using (StreamWriter sw = File.CreateText(LogPathAndFile))
                 {
                     sw.Write(Message);
                 }
             }
             else
             {
-                using (StreamWriter sw = File.AppendText(filepath))
+                using (StreamWriter sw = File.AppendText(LogPathAndFile))
                 {
                     sw.Write(Environment.NewLine + Message);
                 }
