@@ -73,6 +73,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extentions\StringExtentions.cs" />
     <Compile Include="PingAnalys.cs">
       <SubType>Form</SubType>
     </Compile>

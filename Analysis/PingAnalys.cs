@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using Business;
 using System.IO;
 using System.Linq;
+using Analysis.Extentions;
 
 namespace Analysis
 {
@@ -53,7 +54,10 @@ namespace Analysis
             if (serviceStatus == string.Empty)
                 serviceStatus = "not installed";
             LaServiceStatus.Text = serviceStatus;
+            LaServiceStatus.ForeColor = serviceStatus.GetStatusColor();
         }
+
+
 
         private void UpdatePingLog()
         {
