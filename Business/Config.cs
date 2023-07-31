@@ -7,7 +7,7 @@ namespace Business
 {
     public class Config
     {
-        readonly string logFile = "PingLog_" + DateTime.Now.Date.ToString("yyyy-MM") + ".txt";
+        readonly string logFile = "PingLog_" + DateTime.Now.Date.ToString("yyyy") + ".txt";
         readonly string logSubFolder = "Logs";  
         readonly string filePathConfig = $@"{AppDomain.CurrentDomain.BaseDirectory}\PingConfig.Json";
         private static NodeData traceData = new NodeData();

@@ -53,9 +53,9 @@
             this.btnPingConfig.Name = "btnPingConfig";
             this.btnPingConfig.Size = new System.Drawing.Size(121, 23);
             this.btnPingConfig.TabIndex = 6;
-            this.btnPingConfig.Text = "Ping Config";
+            this.btnPingConfig.Text = "Config";
             this.btnPingConfig.UseVisualStyleBackColor = true;
-            this.btnPingConfig.Click += new System.EventHandler(this.BtnPingConfig_Click);
+            this.btnPingConfig.Click += new System.EventHandler(this.BtnConfig_Click);
             // 
             // RtbPingLog
             // 
@@ -72,25 +72,25 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(7, 14);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(94, 13);
+            this.label1.Size = new System.Drawing.Size(54, 13);
             this.label1.TabIndex = 9;
-            this.label1.Text = "Service Status:";
+            this.label1.Text = "Service:";
             // 
             // LaServiceStatus
             // 
             this.LaServiceStatus.AutoSize = true;
             this.LaServiceStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LaServiceStatus.Location = new System.Drawing.Point(97, 14);
+            this.LaServiceStatus.Location = new System.Drawing.Point(58, 14);
             this.LaServiceStatus.Name = "LaServiceStatus";
-            this.LaServiceStatus.Size = new System.Drawing.Size(41, 13);
+            this.LaServiceStatus.Size = new System.Drawing.Size(75, 13);
             this.LaServiceStatus.TabIndex = 10;
-            this.LaServiceStatus.Text = "label2";
+            this.LaServiceStatus.Text = "Running???";
             // 
             // PingAnalysis
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(798, 367);
+            this.ClientSize = new System.Drawing.Size(798, 378);
             this.Controls.Add(this.LaServiceStatus);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.RtbPingLog);

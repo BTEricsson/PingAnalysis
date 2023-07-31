@@ -32,7 +32,7 @@ namespace Analysis
             ServiceAdmin.Show();
         }
 
-        private void BtnPingConfig_Click(object sender, EventArgs e)
+        private void BtnConfig_Click(object sender, EventArgs e)
         {
             ConfigWF Trace = new ConfigWF();
             Trace.Show();
