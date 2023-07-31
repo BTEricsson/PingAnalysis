@@ -98,6 +98,7 @@
             this.Controls.Add(this.btnServiceAdmin);
             this.Name = "PingAnalysis";
             this.Text = "Ping Analysis";
+            this.Load += new System.EventHandler(this.PingAnalysis_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

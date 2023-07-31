@@ -14,12 +14,15 @@ namespace Analysis
         public PingAnalysis()
         {
             InitializeComponent();
+        }
+
+
+        private void PingAnalysis_Load(object sender, EventArgs e)
+        {
             config.Load();
-
             SetTimer();
-
             UpdatePingLog();
-            UpdateServiceStatus();   
+            UpdateServiceStatus();
         }
 
         private void BtnServiceAdmin_Click(object sender, EventArgs e)
@@ -57,13 +60,9 @@ namespace Analysis
             LaServiceStatus.ForeColor = serviceStatus.GetStatusColor();
         }
 
-
-
         private void UpdatePingLog()
         {
-            string filepath = config.LogPath + "\\Logs\\PingLog_" + DateTime.Now.Date.ToString("yyyy-MM").Replace('/', '_') + ".txt";
-            var allLines = File.ReadAllLines(filepath).ToList();
-
+            var allLines = File.ReadAllLines(config.LogPathAndFile).ToList();
             var LinesToView = 15;
             var startIndex = allLines.Count <= LinesToView ? 0 : allLines.Count - LinesToView; 
             var newLines = allLines.GetRange(startIndex, allLines.Count - startIndex);
