@@ -6,18 +6,18 @@ using System.Net.NetworkInformation;
 
 namespace AnalysisService
 {
-    public class PingHelper
+    public class ServiceHelper
     {
-        private PingConfig NodeBase = new PingConfig();
-        public string DownIP = string.Empty;
+        private readonly Config config = new Config();
 
-        public int GetTimer { get { return NodeBase.PingTimer; } }
-        public string GetLogPath { get { return NodeBase.LogPath; } }
+        public string DownIP = string.Empty;
+        public int GetTimer { get { return config.PingTimer; } }
+        public string GetLogPath { get { return config.LogPath; } }
 
         public void InitPingNode()
         {
             DownIP = string.Empty;
-            NodeBase.Load();
+            config.Load();
         }
 
         public void PingNetDown()
@@ -25,7 +25,7 @@ namespace AnalysisService
             if (DownIP == string.Empty)
             {
 
-                LogFileBase.WriteToFile(NodeBase.LogPath, $"Host not responding");
+                LogFileBase.WriteToFile(config.LogPath, $"Host not responding");
 
                 IList<string> IPAdress = GetNodesIP();
 
@@ -37,12 +37,12 @@ namespace AnalysisService
                     var status = GetIPStatus(IP);
                     if (status == IPStatus.Success)
                     {
-                        LogFileBase.WriteToFile(NodeBase.LogPath, $"Response UP @ IP: {IP} {DateTimeString.GetDateTimeString()}");
+                        LogFileBase.WriteToFile(config.LogPath, $"Response UP @ IP: {IP} {DateTimeString.GetDateTimeString()}");
                     }
                     else
                     {
                         DownIP = IP;
-                        LogFileBase.WriteToFile(NodeBase.LogPath, $"Response Down @ IP: {IP} {DateTimeString.GetDateTimeString()}");
+                        LogFileBase.WriteToFile(config.LogPath, $"Response Down @ IP: {IP} {DateTimeString.GetDateTimeString()}");
                     }
                 }
             }
@@ -56,20 +56,20 @@ namespace AnalysisService
                 }
                 else if (status != IPStatus.Success)
                 {
-                    if (!LogFileBase.WriteLastUpdateToFile(NodeBase.LogPath, "Down"))
-                        LogFileBase.WriteToFile(NodeBase.LogPath, $"Response Down @ IP: {DownIP} {DateTimeString.GetDateTimeString()}");
+                    if (!LogFileBase.WriteLastUpdateToFile(config.LogPath, "Down"))
+                        LogFileBase.WriteToFile(config.LogPath, $"Response Down @ IP: {DownIP} {DateTimeString.GetDateTimeString()}");
                 }
             }
         }
 
         private Node GetHost()
         {
-            return NodeBase.Nodes.OrderByDescending(x => x.TTL).Where(y => y.Skip == false).FirstOrDefault();
+            return config.Nodes.OrderByDescending(x => x.TTL).Where(y => y.Skip == false).FirstOrDefault();
         }
 
         private IList<string> GetNodesIP()
         {
-            return NodeBase.Nodes.OrderBy(T => T.TTL).Where(S => S.Skip == false).Select(IP => IP.IPAddress).ToList();
+            return config.Nodes.OrderBy(T => T.TTL).Where(S => S.Skip == false).Select(IP => IP.IPAddress).ToList();
         }
 
 
@@ -85,7 +85,7 @@ namespace AnalysisService
 
             if (Host == null)
             {
-                LogFileBase.WriteToFile(NodeBase.LogPath, $"No active Host to ping. " + DateTime.Now);
+                LogFileBase.WriteToFile(config.LogPath, $"No active Host to ping. " + DateTime.Now);
                 return;
             }
 
@@ -93,12 +93,12 @@ namespace AnalysisService
 
             if (status == IPStatus.Success)
             {
-                if (!LogFileBase.WriteLastUpdateToFile(NodeBase.LogPath, "Ping"))
-                    LogFileBase.WriteToFile(NodeBase.LogPath, $"Ping Host @ IP: {Host.IPAddress}, Status: {status} {DateTimeString.GetDateTimeString()}");
+                if (!LogFileBase.WriteLastUpdateToFile(config.LogPath, "Ping"))
+                    LogFileBase.WriteToFile(config.LogPath, $"Ping Host @ IP: {Host.IPAddress}, Status: {status} {DateTimeString.GetDateTimeString()}");
             }
             else
             {
-                LogFileBase.WriteToFile(NodeBase.LogPath, $"Ping Host @ IP {Host.IPAddress}, Status: {status} {DateTimeString.GetDateTimeString()}");
+                LogFileBase.WriteToFile(config.LogPath, $"Ping Host @ IP {Host.IPAddress}, Status: {status} {DateTimeString.GetDateTimeString()}");
                 PingNetDown();
             }
 

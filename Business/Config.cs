@@ -6,9 +6,9 @@ using System.Text.Json;
 
 namespace Business
 {
-    public class PingConfig
+    public class Config
     {
-        readonly string _filePath = $@"{AppDomain.CurrentDomain.BaseDirectory}\PingConfig.Json";
+        readonly string filePath = $@"{AppDomain.CurrentDomain.BaseDirectory}\PingConfig.Json";
         private static NodeData traceData = new NodeData();
         public NodeData GetNodeData { get { return traceData; } }
         public string Name { get { return traceData.Name; } set { traceData.Name = value; } }
@@ -18,10 +18,10 @@ namespace Business
 
         public NodeData Load()
         {
-            if (!File.Exists(_filePath))
+            if (!File.Exists(filePath))
                 return traceData;
 
-            using (StreamReader r = new StreamReader(_filePath))
+            using (StreamReader r = new StreamReader(filePath))
             {
                 try
                 {
@@ -44,7 +44,7 @@ namespace Business
             {
                 var options = new JsonSerializerOptions() { WriteIndented = true };
                 string jsonString = JsonSerializer.Serialize(traceData, options);
-                using (StreamWriter outputFile = new StreamWriter(_filePath))
+                using (StreamWriter outputFile = new StreamWriter(filePath))
                 {
                     outputFile.WriteLine(jsonString);
                 }

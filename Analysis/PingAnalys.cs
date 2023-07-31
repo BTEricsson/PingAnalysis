@@ -8,12 +8,12 @@ namespace Analysis
 {
     public partial class PingAnalysis :  Form
     {
-        PingConfig pingNode = new PingConfig();
+        readonly Config config = new Config();
 
         public PingAnalysis()
         {
             InitializeComponent();
-            pingNode.Load();
+            config.Load();
 
             SetTimer();
 
@@ -57,7 +57,7 @@ namespace Analysis
 
         private void UpdatePingLog()
         {
-            string filepath = pingNode.LogPath + "\\Logs\\PingLog_" + DateTime.Now.Date.ToString("yyyy-MM").Replace('/', '_') + ".txt";
+            string filepath = config.LogPath + "\\Logs\\PingLog_" + DateTime.Now.Date.ToString("yyyy-MM").Replace('/', '_') + ".txt";
             var allLines = File.ReadAllLines(filepath).ToList();
 
             var LinesToView = 15;
