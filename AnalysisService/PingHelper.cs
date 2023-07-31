@@ -25,7 +25,7 @@ namespace AnalysisService
             if (DownIP == string.Empty)
             {
 
-                LogFileBase.WriteToFile(config.LogPathAndFile, $"Host not responding");
+                LogFileBase.WriteToFile(config.LogPathAndFile, $"{Environment.NewLine}Host not responding");
 
                 IList<string> IPAdress = GetNodesIP();
 

@@ -4,6 +4,7 @@ using Business;
 using System.IO;
 using System.Linq;
 using Analysis.Extentions;
+using System.Drawing;
 
 namespace Analysis
 {
@@ -69,8 +70,22 @@ namespace Analysis
             RtbPingLog.Text = string.Empty;
             foreach(var line in newLines)
             {
-                RtbPingLog.Text += line + Environment.NewLine;
+                SetTextAndColor(RtbPingLog,line);
             }
+        }
+
+        public void SetTextAndColor(RichTextBox Rtb,string TextLine)
+        {
+            string Text = TextLine + Environment.NewLine;
+
+            int StartPos = Rtb.TextLength;
+            int Length = Text.Length;
+            
+            Rtb.SelectionColor = Text.GetLineColor();
+            Rtb.SelectionStart = StartPos;
+            Rtb.SelectionLength = Length;
+
+            Rtb.AppendText(Text);
         }
 
     }
