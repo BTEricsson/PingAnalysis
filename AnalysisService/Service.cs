@@ -27,8 +27,8 @@ namespace AnalysisService
             DownIP = string.Empty;
             pingNode.Load();
 
-            LogFileBase.WriteToFile(pingNode.LogPath, $"{Environment.NewLine}------------------------------------------------------");
-            LogFileBase.WriteToFile(pingNode.LogPath, $"{Environment.NewLine}Service is started at " + DateTime.Now);
+            LogFileBase.WriteToFile(pingNode.LogPath, $"------------------------------------------------------");
+            LogFileBase.WriteToFile(pingNode.LogPath, $"Service is started at " + DateTime.Now);
             
             SetTimer();
             PingHost();
@@ -36,7 +36,7 @@ namespace AnalysisService
 
         protected override void OnStop()
         {
-            LogFileBase.WriteToFile(pingNode.LogPath, $"{Environment.NewLine}Service is stopped at " + DateTime.Now);
+            LogFileBase.WriteToFile(pingNode.LogPath, $"Service is stopped at " + DateTime.Now);
         }
 
         private void OnElapsedTime(object source, ElapsedEventArgs e)
@@ -57,7 +57,7 @@ namespace AnalysisService
             if (DownIP == string.Empty)
             {
 
-                LogFileBase.WriteToFile(pingNode.LogPath, $"{Environment.NewLine}Host not responding");
+                LogFileBase.WriteToFile(pingNode.LogPath, $"Host not responding");
 
                 IList<string> IPAdress = GetNodesIP();
 
@@ -69,12 +69,12 @@ namespace AnalysisService
                     var status = GetIPStatus(IP);
                     if (status == IPStatus.Success)
                     {
-                        LogFileBase.WriteToFile(pingNode.LogPath, $"{Environment.NewLine}Response UP @ IP: {IP} {DateTimeString.GetDateTimeString()}");
+                        LogFileBase.WriteToFile(pingNode.LogPath, $"Response UP @ IP: {IP} {DateTimeString.GetDateTimeString()}");
                     }
                     else
                     {
                         DownIP = IP;
-                        LogFileBase.WriteToFile(pingNode.LogPath, $"{Environment.NewLine}Response Down @ IP: {IP} {DateTimeString.GetDateTimeString()}");
+                        LogFileBase.WriteToFile(pingNode.LogPath, $"Response Down @ IP: {IP} {DateTimeString.GetDateTimeString()}");
                     }
                 }
             }
@@ -89,7 +89,7 @@ namespace AnalysisService
                 else if (status != IPStatus.Success)
                 {
                     if (!LogFileBase.WriteLastUpdateToFile(pingNode.LogPath, "Down"))
-                        LogFileBase.WriteToFile(pingNode.LogPath, $"{Environment.NewLine}Response Down @ IP: {DownIP} {DateTimeString.GetDateTimeString()}");
+                        LogFileBase.WriteToFile(pingNode.LogPath, $"Response Down @ IP: {DownIP} {DateTimeString.GetDateTimeString()}");
                 }
             }
         }
@@ -117,7 +117,7 @@ namespace AnalysisService
 
             if (Host == null)
             {
-                LogFileBase.WriteToFile(pingNode.LogPath, $"{Environment.NewLine}No active Host to ping. " + DateTime.Now);
+                LogFileBase.WriteToFile(pingNode.LogPath, $"No active Host to ping. " + DateTime.Now);
                 return;
             }
 
@@ -126,11 +126,11 @@ namespace AnalysisService
             if (status == IPStatus.Success)
             {
                 if (!LogFileBase.WriteLastUpdateToFile(pingNode.LogPath, "Ping"))
-                    LogFileBase.WriteToFile(pingNode.LogPath, $"{Environment.NewLine}Ping Host @ IP: {Host.IPAddress}, Status: {status} {DateTimeString.GetDateTimeString()}");
+                    LogFileBase.WriteToFile(pingNode.LogPath, $"Ping Host @ IP: {Host.IPAddress}, Status: {status} {DateTimeString.GetDateTimeString()}");
             }
             else
             {
-                LogFileBase.WriteToFile(pingNode.LogPath, $"{Environment.NewLine}Ping Host @ IP {Host.IPAddress}, Status: {status} {DateTimeString.GetDateTimeString()}");
+                LogFileBase.WriteToFile(pingNode.LogPath, $"Ping Host @ IP {Host.IPAddress}, Status: {status} {DateTimeString.GetDateTimeString()}");
                 PingNetDown();
             }
 

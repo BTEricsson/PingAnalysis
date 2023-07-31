@@ -37,7 +37,7 @@ namespace AnalysisService
             }
             catch (Exception ex)
             {
-                WriteToFile(LogPath, Environment.NewLine + "Ex: " + ex.Message);
+                WriteToFile(LogPath, "Ex: " + ex.Message);
                 return false;
             }
 
@@ -65,7 +65,7 @@ namespace AnalysisService
             {
                 using (StreamWriter sw = File.AppendText(filepath))
                 {
-                    sw.Write(Message);
+                    sw.Write(Environment.NewLine + Message);
                 }
             }
         }
