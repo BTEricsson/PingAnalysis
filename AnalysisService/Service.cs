@@ -23,8 +23,8 @@ namespace AnalysisService
             LogFileBase.WriteToFile(serviceHelper.GetLogPathAndFile, $"Service is started at " + DateTime.Now);
 
             SetTimer();
-
             serviceHelper.PingHost();
+
         }
 
         protected override void OnStop()

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Collections.Generic;
 using Business;
 
 namespace Analysis
@@ -9,7 +8,7 @@ namespace Analysis
     public partial class ConfigWF : Form
     {
         private Config pingData = new Config();
-        private BindingSource bindingSource1 = new BindingSource();
+        private BindingSource bindingSource = new BindingSource();
 
         public ConfigWF()
         {
@@ -29,7 +28,7 @@ namespace Analysis
 
             SetGridPreloadProperty();
   
-            pingData.Nodes = (IList<Node>)TraceHelpers.GetTraceRoute(cbURL.Text);
+            pingData.Nodes = TraceHelpers.GetTraceRoute(cbURL.Text);
             pingData.Name = cbURL.Text;
 
             InitView();
@@ -52,8 +51,8 @@ namespace Analysis
 
         private void UpdateGridSource()
         {
-            bindingSource1.DataSource = pingData.Nodes;
-            dataGridView.DataSource = bindingSource1;
+            bindingSource.DataSource = pingData.Nodes;
+            dataGridView.DataSource = bindingSource;
         }
 
         private void SetGridPreloadProperty()

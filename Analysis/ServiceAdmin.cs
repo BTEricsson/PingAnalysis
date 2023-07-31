@@ -8,7 +8,6 @@ namespace Analysis
 {
     public partial class ServiceAdmin : Form
     {
-        static readonly string ServiceName = "PingAnalysisService";
         static readonly int Timeout = 10000;
         private bool serviceInstalled;
 
@@ -20,19 +19,19 @@ namespace Analysis
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            ServiceHelper.StartService(ServiceName, Timeout);
+            ServiceHelper.StartService(Timeout);
             SetButtonStatus();
         }
 
         private void btnStop_Click(object sender, EventArgs e)
         {
-            ServiceHelper.StopService(ServiceName, Timeout);
+            ServiceHelper.StopService(Timeout);
             SetButtonStatus();
         }
 
         private void btnInstall_Click(object sender, EventArgs e)
         {
-            string serviceStatus = ServiceHelper.GetServiceStatus(ServiceName, Environment.MachineName);
+            string serviceStatus = ServiceHelper.GetServiceStatus(Environment.MachineName);
             string serviceLocation = AnalysisService.Service.AssemblyLocation();
 
             if (serviceStatus == string.Empty)
@@ -43,7 +42,7 @@ namespace Analysis
 
         private void btnUninstall_Click(object sender, EventArgs e)
         {
-            string serviceStatus = ServiceHelper.GetServiceStatus(ServiceName, Environment.MachineName);
+            string serviceStatus = ServiceHelper.GetServiceStatus(Environment.MachineName);
             string serviceLocation = AnalysisService.Service.AssemblyLocation();
 
             if (serviceStatus != string.Empty)
@@ -54,7 +53,7 @@ namespace Analysis
 
         private void SetButtonStatus()
         {
-            string serviceStatus = ServiceHelper.GetServiceStatus(ServiceName, Environment.MachineName);
+            string serviceStatus = ServiceHelper.GetServiceStatus(Environment.MachineName);
             serviceInstalled = serviceStatus != string.Empty;
             
             if (serviceStatus == string.Empty)

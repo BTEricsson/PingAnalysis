@@ -6,10 +6,11 @@ namespace Analysis
 {
     public class ServiceHelper
     {
+        static readonly string ServiceName = AnalysisService.ServiceHelper.ServiceName;
 
-        public static void StartService(string serviceName, int timeoutMilliseconds)
+        public static void StartService(int timeoutMilliseconds)
         {
-            ServiceController service = new ServiceController(serviceName);
+            ServiceController service = new ServiceController(ServiceName);
             try
             {
                 TimeSpan timeout = TimeSpan.FromMilliseconds(timeoutMilliseconds);
@@ -23,9 +24,9 @@ namespace Analysis
             }
         }
 
-        public static void StopService(string serviceName, int timeoutMilliseconds)
+        public static void StopService(int timeoutMilliseconds)
         {
-            ServiceController service = new ServiceController(serviceName);
+            ServiceController service = new ServiceController(ServiceName);
             try
             {
                 TimeSpan timeout = TimeSpan.FromMilliseconds(timeoutMilliseconds);
@@ -39,13 +40,13 @@ namespace Analysis
             }
         }
 
-        public static string GetServiceStatus(string name, string machineName)
+        public static string GetServiceStatus(string machineName)
         {
             ServiceController controller = null;
 
             try
             {
-                controller = new ServiceController(name, machineName);
+                controller = new ServiceController(ServiceName, machineName);
                 return controller.Status.ToString();
             }
             catch (InvalidOperationException Ex)

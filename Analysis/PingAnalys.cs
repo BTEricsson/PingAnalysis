@@ -52,8 +52,7 @@ namespace Analysis
 
         private void UpdateServiceStatus()
         {
-            string ServiceName = "PingAnalysisService";
-            string serviceStatus = ServiceHelper.GetServiceStatus(ServiceName, Environment.MachineName);
+            string serviceStatus = ServiceHelper.GetServiceStatus(Environment.MachineName);
             if (serviceStatus == string.Empty)
                 serviceStatus = "not installed";
             LaServiceStatus.Text = serviceStatus;
