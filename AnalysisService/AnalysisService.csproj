@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="DateTimeString.cs" />
     <Compile Include="LogFileBase.cs" />
+    <Compile Include="PingHelper.cs" />
     <Compile Include="ProjectInstaller.cs">
       <SubType>Component</SubType>
     </Compile>

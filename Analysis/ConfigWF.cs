@@ -6,12 +6,12 @@ using Business;
 
 namespace Analysis
 {
-    public partial class Config : Form
+    public partial class ConfigWF : Form
     {
-        private PingNode pingData = new PingNode();
+        private PingConfig pingData = new PingConfig();
         private BindingSource bindingSource1 = new BindingSource();
 
-        public Config()
+        public ConfigWF()
         {
             InitializeComponent();
         }

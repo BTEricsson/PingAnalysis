@@ -6,7 +6,7 @@ using System.Text.Json;
 
 namespace Business
 {
-    public class PingNode
+    public class PingConfig
     {
         readonly string _filePath = $@"{AppDomain.CurrentDomain.BaseDirectory}\PingConfig.Json";
         private static NodeData traceData = new NodeData();
