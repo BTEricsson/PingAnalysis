@@ -29,10 +29,8 @@ namespace AnalysisService
 
             LogFileBase.WriteToFile(pingNode.LogPath, $"{Environment.NewLine}------------------------------------------------------");
             LogFileBase.WriteToFile(pingNode.LogPath, $"{Environment.NewLine}Service is started at " + DateTime.Now);
-            timer.Elapsed += new ElapsedEventHandler(OnElapsedTime);
-            timer.Interval = 60000 * pingNode.PingTimer;
-            timer.Enabled = true;
-
+            
+            SetTimer();
             PingHost();
         }
 
@@ -46,6 +44,12 @@ namespace AnalysisService
             PingHost();
         }
 
+        private void SetTimer()
+        {
+            timer.Elapsed += new ElapsedEventHandler(OnElapsedTime);
+            timer.Interval = 60000 * pingNode.PingTimer;
+            timer.Enabled = true;
+        }
 
 
         private void PingNetDown()
