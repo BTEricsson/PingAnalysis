@@ -8,7 +8,7 @@ namespace Business
     public class Config
     {
         readonly string logFile = "PingLog_" + DateTime.Now.Date.ToString("yyyy-MM") + ".txt";
-        readonly string logFolder = "Logs";  
+        readonly string logSubFolder = "Logs";  
         readonly string filePathConfig = $@"{AppDomain.CurrentDomain.BaseDirectory}\PingConfig.Json";
         private static NodeData traceData = new NodeData();
 
@@ -16,7 +16,7 @@ namespace Business
         public string Name { get { return traceData.Name; } set { traceData.Name = value; } }
         public int PingTimer { get { return traceData.PingTimer; } set { traceData.PingTimer = value; } }
         public string LogPath { get { return traceData.LogPath; } set { traceData.LogPath = value; } }
-        public string LogPathAndFile { get { return LogPath + "\\" + logFolder + "\\" + logFile; } }
+        public string LogPathAndFile { get { return LogPath + "\\" + logSubFolder + "\\" + logFile; } }
         public IList<Node> Nodes { get { return traceData.Nodes; } set { traceData.Nodes = value; } }
 
         public NodeData Load()
