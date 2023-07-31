@@ -8,7 +8,7 @@ namespace Analysis
 {
     public partial class ConfigWF : Form
     {
-        private PingConfig pingData = new PingConfig();
+        private Config pingData = new Config();
         private BindingSource bindingSource1 = new BindingSource();
 
         public ConfigWF()

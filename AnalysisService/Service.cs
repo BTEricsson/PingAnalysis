@@ -8,7 +8,7 @@ namespace AnalysisService
     public partial class Service : ServiceBase
     {
         readonly Timer timer = new Timer();
-        readonly PingHelper PingHelper = new PingHelper();
+        readonly ServiceHelper serviceHelper = new ServiceHelper();
 
         public Service()
         {
@@ -17,30 +17,30 @@ namespace AnalysisService
 
         protected override void OnStart(string[] args)
         {
-            PingHelper.InitPingNode();
+            serviceHelper.InitPingNode();
 
-            LogFileBase.WriteToFile(PingHelper.GetLogPath, $"------------------------------------------------------");
-            LogFileBase.WriteToFile(PingHelper.GetLogPath, $"Service is started at " + DateTime.Now);
+            LogFileBase.WriteToFile(serviceHelper.GetLogPath, $"------------------------------------------------------");
+            LogFileBase.WriteToFile(serviceHelper.GetLogPath, $"Service is started at " + DateTime.Now);
 
             SetTimer();
 
-            PingHelper.PingHost();
+            serviceHelper.PingHost();
         }
 
         protected override void OnStop()
         {
-            LogFileBase.WriteToFile(PingHelper.GetLogPath, $"Service is stopped at " + DateTime.Now);
+            LogFileBase.WriteToFile(serviceHelper.GetLogPath, $"Service is stopped at " + DateTime.Now);
         }
 
         private void OnElapsedTime(object source, ElapsedEventArgs e)
         {
-            PingHelper.PingHost();
+            serviceHelper.PingHost();
         }
 
         private void SetTimer()
         {
             timer.Elapsed += new ElapsedEventHandler(OnElapsedTime);
-            timer.Interval = 60000 * PingHelper.GetTimer;
+            timer.Interval = 60000 * serviceHelper.GetTimer;
             timer.Enabled = true;
         }
 
