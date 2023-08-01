@@ -94,11 +94,11 @@ namespace AnalysisService
             if (status == IPStatus.Success)
             {
                 if (!LogFileBase.WriteLastUpdateToFile(config.LogPathAndFile, "Ping"))
-                    LogFileBase.WriteToFile(config.LogPathAndFile, $"Ping Host @ IP: {Host.IPAddress}, Status: {status} {DateTimeString.GetDateTimeString()}");
+                    LogFileBase.WriteToFile(config.LogPathAndFile, $"Ping Host Status: {status} @ IP: {Host.IPAddress} at {DateTimeString.GetDateTimeString()}");
             }
             else
             {
-                LogFileBase.WriteToFile(config.LogPathAndFile, $"Ping Host @ IP {Host.IPAddress}, Status: {status} {DateTimeString.GetDateTimeString()}");
+                LogFileBase.WriteToFile(config.LogPathAndFile, $"Ping Host Status: {status} @ IP: {Host.IPAddress} at {DateTimeString.GetDateTimeString()}");
                 PingNetDown();
             }
 

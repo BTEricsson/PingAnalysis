@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using Business;
@@ -27,7 +28,7 @@ namespace Analysis
                 return;
 
             SetGridPreloadProperty();
-  
+
             pingData.Nodes = TraceHelpers.GetTraceRoute(cbURL.Text);
             pingData.Name = cbURL.Text;
 
@@ -44,9 +45,30 @@ namespace Analysis
             LaHost.Text = pingData.Name;
             LaLogPath.Text = pingData.LogPath;
 
+            InitCBPingTimer();
+        }
+
+
+
+        private void InitCBPingTimer()
+        {
+            var PingTimer = new List<KeyValuePair<string, int>>()
+            {
+                new KeyValuePair<string, int>("1 min", 60000),
+                new KeyValuePair<string, int>("5 min", 60000*5),
+                new KeyValuePair<string, int>("10 min", 60000*10),
+                new KeyValuePair<string, int>("15 min", 60000*15),
+                new KeyValuePair<string, int>("30 min", 60000*30),
+                new KeyValuePair<string, int>("60 min", 60000*60)
+            };
+
             if (pingData.PingTimer == 0)
-                pingData.PingTimer = 5;
-            CbPingTimer.Text = pingData.PingTimer.ToString();
+                pingData.PingTimer = 60000 * 5;
+
+            CbPingTimer.DataSource = PingTimer;
+            CbPingTimer.ValueMember = "value";
+            CbPingTimer.DisplayMember = "key";
+            CbPingTimer.SelectedValue = pingData.PingTimer;
         }
 
         private void UpdateGridSource()
@@ -93,7 +115,7 @@ namespace Analysis
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            pingData.PingTimer = int.Parse(CbPingTimer.Text);
+            pingData.PingTimer = (int)CbPingTimer.SelectedValue;
             pingData.SaveOrUpdate();
         }
 

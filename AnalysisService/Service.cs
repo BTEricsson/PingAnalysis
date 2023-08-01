@@ -56,7 +56,7 @@ namespace AnalysisService
         private void SetTimer()
         {
             timer.Elapsed += new ElapsedEventHandler(OnElapsedTime);
-            timer.Interval = 60000 * serviceHelper.GetTimer;
+            timer.Interval = serviceHelper.GetTimer;
             timer.Enabled = true;
         }
 
