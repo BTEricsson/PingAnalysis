@@ -50,14 +50,14 @@
             this.cbURL.Items.AddRange(new object[] {
             "Google.se",
             "Google.com"});
-            this.cbURL.Location = new System.Drawing.Point(47, 316);
+            this.cbURL.Location = new System.Drawing.Point(80, 316);
             this.cbURL.Name = "cbURL";
-            this.cbURL.Size = new System.Drawing.Size(634, 21);
+            this.cbURL.Size = new System.Drawing.Size(325, 21);
             this.cbURL.TabIndex = 6;
             // 
             // btnGetTraceRoutes
             // 
-            this.btnGetTraceRoutes.Location = new System.Drawing.Point(693, 314);
+            this.btnGetTraceRoutes.Location = new System.Drawing.Point(411, 316);
             this.btnGetTraceRoutes.Name = "btnGetTraceRoutes";
             this.btnGetTraceRoutes.Size = new System.Drawing.Size(95, 23);
             this.btnGetTraceRoutes.TabIndex = 5;
@@ -67,7 +67,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(693, 423);
+            this.btnSave.Location = new System.Drawing.Point(693, 374);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(95, 23);
             this.btnSave.TabIndex = 8;
@@ -113,7 +113,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(9, 319);
+            this.label2.Location = new System.Drawing.Point(9, 321);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(33, 13);
             this.label2.TabIndex = 15;
@@ -125,9 +125,9 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(9, 350);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(61, 13);
+            this.label3.Size = new System.Drawing.Size(57, 13);
             this.label3.TabIndex = 16;
-            this.label3.Text = "Log path:";
+            this.label3.Text = "Log path";
             // 
             // LaLogPath
             // 
@@ -140,9 +140,9 @@
             // 
             // btnLogPath
             // 
-            this.btnLogPath.Location = new System.Drawing.Point(12, 375);
+            this.btnLogPath.Location = new System.Drawing.Point(12, 374);
             this.btnLogPath.Name = "btnLogPath";
-            this.btnLogPath.Size = new System.Drawing.Size(151, 23);
+            this.btnLogPath.Size = new System.Drawing.Size(95, 23);
             this.btnLogPath.TabIndex = 18;
             this.btnLogPath.Text = "Select Path";
             this.btnLogPath.UseVisualStyleBackColor = true;
@@ -151,32 +151,26 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(477, 368);
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(594, 321);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(77, 13);
+            this.label4.Size = new System.Drawing.Size(67, 13);
             this.label4.TabIndex = 19;
-            this.label4.Text = "Success Timer";
+            this.label4.Text = "Ping Timer";
             // 
             // CbPingTimer
             // 
             this.CbPingTimer.FormattingEnabled = true;
-            this.CbPingTimer.Items.AddRange(new object[] {
-            "1",
-            "5",
-            "10",
-            "15",
-            "30",
-            "60"});
-            this.CbPingTimer.Location = new System.Drawing.Point(560, 365);
+            this.CbPingTimer.Location = new System.Drawing.Point(667, 318);
             this.CbPingTimer.Name = "CbPingTimer";
             this.CbPingTimer.Size = new System.Drawing.Size(121, 21);
-            this.CbPingTimer.TabIndex = 21;
+            this.CbPingTimer.TabIndex = 22;
             // 
-            // Config
+            // ConfigWF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(798, 458);
+            this.ClientSize = new System.Drawing.Size(797, 411);
             this.Controls.Add(this.CbPingTimer);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btnLogPath);
@@ -189,7 +183,7 @@
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.cbURL);
             this.Controls.Add(this.btnGetTraceRoutes);
-            this.Name = "Config";
+            this.Name = "ConfigWF";
             this.Text = "Ping Config";
             this.Load += new System.EventHandler(this.Config_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
