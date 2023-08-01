@@ -63,7 +63,7 @@ namespace Analysis
         private void UpdatePingLog()
         {
             var allLines = File.ReadAllLines(config.LogPathAndFile).ToList();
-            var LinesToView = 15;
+            var LinesToView = 20;
             var startIndex = allLines.Count <= LinesToView ? 0 : allLines.Count - LinesToView; 
             var newLines = allLines.GetRange(startIndex, allLines.Count - startIndex);
 

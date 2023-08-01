@@ -26,7 +26,21 @@ namespace AnalysisService
 
             SetTimer();
             serviceHelper.PingHost();
+        }
 
+        protected override void OnContinue()
+        {
+            LogFileBase.WriteToFile(serviceHelper.GetLogPathAndFile, $"Service is Continue at " + DateTime.Now);
+        }
+
+        protected override void OnPause()
+        {
+            LogFileBase.WriteToFile(serviceHelper.GetLogPathAndFile, $"Service is Pouse at " + DateTime.Now);
+        }
+
+        protected override void OnShutdown()
+        {
+            LogFileBase.WriteToFile(serviceHelper.GetLogPathAndFile, $"Service is Shutdown at " + DateTime.Now);
         }
 
         protected override void OnStop()
