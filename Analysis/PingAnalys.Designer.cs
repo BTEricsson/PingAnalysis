@@ -35,6 +35,7 @@
             this.RtbPingLog = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.LaServiceStatus = new System.Windows.Forms.Label();
+            this.BtnClose = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnServiceAdmin
@@ -86,11 +87,22 @@
             this.LaServiceStatus.TabIndex = 10;
             this.LaServiceStatus.Text = "Running???";
             // 
+            // BtnClose
+            // 
+            this.BtnClose.Location = new System.Drawing.Point(665, 332);
+            this.BtnClose.Name = "BtnClose";
+            this.BtnClose.Size = new System.Drawing.Size(121, 23);
+            this.BtnClose.TabIndex = 11;
+            this.BtnClose.Text = "Close";
+            this.BtnClose.UseVisualStyleBackColor = true;
+            this.BtnClose.Click += new System.EventHandler(this.BtnClose_Click);
+            // 
             // PingAnalysis
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(798, 378);
+            this.Controls.Add(this.BtnClose);
             this.Controls.Add(this.LaServiceStatus);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.RtbPingLog);
@@ -111,6 +123,7 @@
         private System.Windows.Forms.RichTextBox RtbPingLog;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label LaServiceStatus;
+        private System.Windows.Forms.Button BtnClose;
     }
 }
 
