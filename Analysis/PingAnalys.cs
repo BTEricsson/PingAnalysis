@@ -88,5 +88,9 @@ namespace Analysis
             Rtb.AppendText(Text);
         }
 
+        private void BtnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
