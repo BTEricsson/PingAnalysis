@@ -25,6 +25,9 @@ namespace Analysis.Extentions
             if (TextLine.Contains("Success"))
                 return Color.Green;
 
+            if (TextLine.Contains("TimedOut"))
+                return Color.DarkOrange;
+
             if (TextLine.Contains("UP"))
                 return Color.Green;
 
