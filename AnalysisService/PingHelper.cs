@@ -37,12 +37,12 @@ namespace AnalysisService
                     var status = GetIPStatus(IP);
                     if (status == IPStatus.Success)
                     {
-                        LogFileBase.WriteToFile(config.LogPathAndFile, $"Response UP @ IP: {IP} {DateTimeString.GetDateTimeString()}");
+                        LogFileBase.WriteToFile(config.LogPathAndFile, $"Response UP @ IP: {IP} at {DateTimeString.GetDateTimeString()}");
                     }
                     else
                     {
                         DownIP = IP;
-                        LogFileBase.WriteToFile(config.LogPathAndFile, $"Response Down @ IP: {IP} {DateTimeString.GetDateTimeString()}");
+                        LogFileBase.WriteToFile(config.LogPathAndFile, $"Response Down @ IP: {IP} at {DateTimeString.GetDateTimeString()}");
                     }
                 }
             }
@@ -57,7 +57,7 @@ namespace AnalysisService
                 else if (status != IPStatus.Success)
                 {
                     if (!LogFileBase.WriteLastUpdateToFile(config.LogPathAndFile, "Down"))
-                        LogFileBase.WriteToFile(config.LogPathAndFile, $"Response Down @ IP: {DownIP} {DateTimeString.GetDateTimeString()}");
+                        LogFileBase.WriteToFile(config.LogPathAndFile, $"Response Down @ IP: {DownIP} at {DateTimeString.GetDateTimeString()}");
                 }
             }
         }
