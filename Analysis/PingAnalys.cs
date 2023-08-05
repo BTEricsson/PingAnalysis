@@ -16,15 +16,15 @@ namespace Analysis
             InitializeComponent();
         }
 
-
         private void PingAnalysis_Load(object sender, EventArgs e)
         {
             config.Load();
             SetTimer();
-            UpdatePingLog();
+            UpdateRitchTextBoxWithPingLog();
             UpdateServiceStatus();
         }
 
+        #region Buttons
         private void BtnServiceAdmin_Click(object sender, EventArgs e)
         {
             ServiceAdmin ServiceAdmin = new ServiceAdmin();
@@ -37,19 +37,28 @@ namespace Analysis
             Trace.Show();
         }
 
+        private void BtnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+        #endregion
+
+        #region Timer
         void SetTimer()
         {
-            timer1.Tick += UpdateTime;
+            timer1.Tick += onTickEvent;
             timer1.Interval = 10000;
             timer1.Enabled = true;
         }
 
-        private void UpdateTime(object sender, EventArgs e)
+        private void onTickEvent(object sender, EventArgs e)
         {
-            UpdatePingLog();
+            UpdateRitchTextBoxWithPingLog();
             UpdateServiceStatus();
         }
 
+        #endregion Timer
+        
         private void UpdateServiceStatus()
         {
             string serviceStatus = ServiceHelper.GetServiceStatus(Environment.MachineName);
@@ -59,23 +68,20 @@ namespace Analysis
             LaServiceStatus.ForeColor = serviceStatus.GetStatusColor();
         }
 
-        private void UpdatePingLog()
+        private void UpdateRitchTextBoxWithPingLog()
         {
-            var allLines = File.ReadAllLines(config.LogPathAndFile).ToList();
-            var LinesToView = 20;
-            var startIndex = allLines.Count <= LinesToView ? 0 : allLines.Count - LinesToView; 
-            var newLines = allLines.GetRange(startIndex, allLines.Count - startIndex);
+            int linesToView = 20;
+            var allReadLines = File.ReadAllLines(config.LogPathAndFile).ToList();
+            int allLines = allReadLines.Count;
+            int startLine = allLines <= linesToView ? 0 : allLines - linesToView; 
 
-            RtbPingLog.Text = string.Empty;
-            foreach(var line in newLines)
+            var selectedLinesToView = allReadLines.GetRange(startLine, allLines - startLine);
+
+            RtbPingView.Text = string.Empty;
+            foreach(var line in selectedLinesToView)
             {
-                RtbPingLog.AddTexLineWithStatusColor(line);
+                RtbPingView.AddTexLineWithStatusColor(line);
             }
-        }
-
-        private void BtnClose_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
     }
 }

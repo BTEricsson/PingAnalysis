@@ -73,7 +73,7 @@
             this.btnSave.TabIndex = 8;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
             // dataGridView
             // 
@@ -146,7 +146,7 @@
             this.btnLogPath.TabIndex = 18;
             this.btnLogPath.Text = "Select Path";
             this.btnLogPath.UseVisualStyleBackColor = true;
-            this.btnLogPath.Click += new System.EventHandler(this.button1_Click);
+            this.btnLogPath.Click += new System.EventHandler(this.BtnLogPath_Click);
             // 
             // label4
             // 

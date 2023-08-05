@@ -8,7 +8,7 @@ namespace Analysis
 {
     public partial class ConfigWF : Form
     {
-        private Config pingData = new Config();
+        private Config Config = new Config();
         private BindingSource bindingSource = new BindingSource();
 
         public ConfigWF()
@@ -29,8 +29,8 @@ namespace Analysis
 
             SetGridPreloadProperty();
 
-            pingData.Nodes = TraceHelpers.GetTraceRoute(cbURL.Text);
-            pingData.Name = cbURL.Text;
+            Config.Nodes = TraceHelpers.GetTraceRoute(cbURL.Text);
+            Config.Name = cbURL.Text;
 
             InitView();
         }
@@ -40,10 +40,10 @@ namespace Analysis
             UpdateGridSource();
             SetGridLoadFinishProperty();
 
-            cbURL.Text = pingData.Name;
+            cbURL.Text = Config.Name;
 
-            LaHost.Text = pingData.Name;
-            LaLogPath.Text = pingData.LogPath;
+            LaHost.Text = Config.Name;
+            LaLogPath.Text = Config.LogPath;
 
             InitCBPingTimer();
         }
@@ -62,18 +62,18 @@ namespace Analysis
                 new KeyValuePair<string, int>("60 min", 60000*60)
             };
 
-            if (pingData.PingTimer == 0)
-                pingData.PingTimer = 60000 * 5;
+            if (Config.PingTimer == 0)
+                Config.PingTimer = 60000 * 5;
 
             CbPingTimer.DataSource = PingTimer;
             CbPingTimer.ValueMember = "value";
             CbPingTimer.DisplayMember = "key";
-            CbPingTimer.SelectedValue = pingData.PingTimer;
+            CbPingTimer.SelectedValue = Config.PingTimer;
         }
 
         private void UpdateGridSource()
         {
-            bindingSource.DataSource = pingData.Nodes;
+            bindingSource.DataSource = Config.Nodes;
             dataGridView.DataSource = bindingSource;
         }
 
@@ -107,26 +107,26 @@ namespace Analysis
 
         private void LoadData()
         {  
-            pingData.Load();
+            Config.Load();
 
-            if (pingData.LogPath == null || pingData.LogPath == string.Empty)
-                pingData.LogPath = AppDomain.CurrentDomain.BaseDirectory.ToString();
+            if (Config.LogPath == null || Config.LogPath == string.Empty)
+                Config.LogPath = AppDomain.CurrentDomain.BaseDirectory.ToString();
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private void BtnSave_Click(object sender, EventArgs e)
         {
-            pingData.PingTimer = (int)CbPingTimer.SelectedValue;
-            pingData.SaveOrUpdate();
+            Config.PingTimer = (int)CbPingTimer.SelectedValue;
+            Config.SaveOrUpdate();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void BtnLogPath_Click(object sender, EventArgs e)
         {
-            folderBrowserDialog1.SelectedPath = pingData.LogPath;
+            folderBrowserDialog1.SelectedPath = Config.LogPath;
 
             if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
             {
-                pingData.LogPath = folderBrowserDialog1.SelectedPath;
-                LaLogPath.Text = pingData.LogPath;
+                Config.LogPath = folderBrowserDialog1.SelectedPath;
+                LaLogPath.Text = Config.LogPath;
             }
         }
     }
