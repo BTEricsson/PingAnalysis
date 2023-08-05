@@ -82,6 +82,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Extentions\RichTextBoxExtentions.cs" />
     <Compile Include="ServiceAdmin.cs">
       <SubType>Form</SubType>
     </Compile>
