@@ -20,7 +20,7 @@ namespace Analysis.Extentions
             }
         }
 
-        public static Color GetLineColor(this string TextLine)
+        public static Color GetTextLineStatusColor(this string TextLine)
         {
             if (TextLine.Contains("Success"))
                 return Color.Green;
