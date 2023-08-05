@@ -32,7 +32,7 @@
             this.btnServiceAdmin = new System.Windows.Forms.Button();
             this.btnPingConfig = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.RtbPingLog = new System.Windows.Forms.RichTextBox();
+            this.RtbPingView = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.LaServiceStatus = new System.Windows.Forms.Label();
             this.BtnClose = new System.Windows.Forms.Button();
@@ -58,14 +58,14 @@
             this.btnPingConfig.UseVisualStyleBackColor = true;
             this.btnPingConfig.Click += new System.EventHandler(this.BtnConfig_Click);
             // 
-            // RtbPingLog
+            // RtbPingView
             // 
-            this.RtbPingLog.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.RtbPingLog.Location = new System.Drawing.Point(10, 38);
-            this.RtbPingLog.Name = "RtbPingLog";
-            this.RtbPingLog.Size = new System.Drawing.Size(638, 317);
-            this.RtbPingLog.TabIndex = 8;
-            this.RtbPingLog.Text = "";
+            this.RtbPingView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.RtbPingView.Location = new System.Drawing.Point(10, 38);
+            this.RtbPingView.Name = "RtbPingView";
+            this.RtbPingView.Size = new System.Drawing.Size(638, 317);
+            this.RtbPingView.TabIndex = 8;
+            this.RtbPingView.Text = "";
             // 
             // label1
             // 
@@ -105,7 +105,7 @@
             this.Controls.Add(this.BtnClose);
             this.Controls.Add(this.LaServiceStatus);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.RtbPingLog);
+            this.Controls.Add(this.RtbPingView);
             this.Controls.Add(this.btnPingConfig);
             this.Controls.Add(this.btnServiceAdmin);
             this.Name = "PingAnalysis";
@@ -120,7 +120,7 @@
         private System.Windows.Forms.Button btnServiceAdmin;
         private System.Windows.Forms.Button btnPingConfig;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.RichTextBox RtbPingLog;
+        private System.Windows.Forms.RichTextBox RtbPingView;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label LaServiceStatus;
         private System.Windows.Forms.Button BtnClose;
