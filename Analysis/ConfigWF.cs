@@ -76,12 +76,12 @@ namespace Analysis
         {
             var PingTimeout = new List<KeyValuePair<string, int>>()
             {
-                new KeyValuePair<string, int>("1 sec", 10000),
-                new KeyValuePair<string, int>("2 sec", 20000),
-                new KeyValuePair<string, int>("3 sec", 30000),
-                new KeyValuePair<string, int>("4 sec", 40000),
-                new KeyValuePair<string, int>("5 sec", 50000),
-                new KeyValuePair<string, int>("6 sec", 60000)
+                new KeyValuePair<string, int>("10 sec", 10000),
+                new KeyValuePair<string, int>("20 sec", 20000),
+                new KeyValuePair<string, int>("30 sec", 30000),
+                new KeyValuePair<string, int>("40 sec", 40000),
+                new KeyValuePair<string, int>("50 sec", 50000),
+                new KeyValuePair<string, int>("60 sec", 60000)
             };
 
             if (Config.PingTimeout == 0)
