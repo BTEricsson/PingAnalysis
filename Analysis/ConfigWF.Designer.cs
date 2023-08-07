@@ -41,6 +41,9 @@
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.label4 = new System.Windows.Forms.Label();
             this.CbPingTimer = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.CbPingTimeout = new System.Windows.Forms.ComboBox();
+            this.BtnClose = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -67,7 +70,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(693, 374);
+            this.btnSave.Location = new System.Drawing.Point(566, 376);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(95, 23);
             this.btnSave.TabIndex = 8;
@@ -140,7 +143,7 @@
             // 
             // btnLogPath
             // 
-            this.btnLogPath.Location = new System.Drawing.Point(12, 374);
+            this.btnLogPath.Location = new System.Drawing.Point(12, 376);
             this.btnLogPath.Name = "btnLogPath";
             this.btnLogPath.Size = new System.Drawing.Size(95, 23);
             this.btnLogPath.TabIndex = 18;
@@ -166,11 +169,42 @@
             this.CbPingTimer.Size = new System.Drawing.Size(121, 21);
             this.CbPingTimer.TabIndex = 22;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(580, 350);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(81, 13);
+            this.label5.TabIndex = 23;
+            this.label5.Text = "Ping Timeout";
+            // 
+            // CbPingTimeout
+            // 
+            this.CbPingTimeout.FormattingEnabled = true;
+            this.CbPingTimeout.Location = new System.Drawing.Point(667, 345);
+            this.CbPingTimeout.Name = "CbPingTimeout";
+            this.CbPingTimeout.Size = new System.Drawing.Size(121, 21);
+            this.CbPingTimeout.TabIndex = 24;
+            // 
+            // BtnClose
+            // 
+            this.BtnClose.Location = new System.Drawing.Point(693, 376);
+            this.BtnClose.Name = "BtnClose";
+            this.BtnClose.Size = new System.Drawing.Size(95, 23);
+            this.BtnClose.TabIndex = 25;
+            this.BtnClose.Text = "Close";
+            this.BtnClose.UseVisualStyleBackColor = true;
+            this.BtnClose.Click += new System.EventHandler(this.BtnClose_Click);
+            // 
             // ConfigWF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(797, 411);
+            this.Controls.Add(this.BtnClose);
+            this.Controls.Add(this.CbPingTimeout);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.CbPingTimer);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btnLogPath);
@@ -206,5 +240,8 @@
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox CbPingTimer;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox CbPingTimeout;
+        private System.Windows.Forms.Button BtnClose;
     }
 }

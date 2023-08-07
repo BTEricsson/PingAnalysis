@@ -16,6 +16,7 @@ namespace Business
     {
         public string Name { get; set; }
         public int PingTimer { get; set; }
+        public int PingTimeout { get; set; }
         public string LogPath { get; set; }
         public IList<Node> Nodes { get; set; }
     }
