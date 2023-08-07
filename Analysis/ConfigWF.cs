@@ -45,12 +45,13 @@ namespace Analysis
             LaHost.Text = Config.Name;
             LaLogPath.Text = Config.LogPath;
 
-            InitCBPingTimer();
+            InitCbPingTimer();
+            InitCbPingTimeout();
         }
 
 
 
-        private void InitCBPingTimer()
+        private void InitCbPingTimer()
         {
             var PingTimer = new List<KeyValuePair<string, int>>()
             {
@@ -70,6 +71,28 @@ namespace Analysis
             CbPingTimer.DisplayMember = "key";
             CbPingTimer.SelectedValue = Config.PingTimer;
         }
+
+        private void InitCbPingTimeout()
+        {
+            var PingTimeout = new List<KeyValuePair<string, int>>()
+            {
+                new KeyValuePair<string, int>("1 sec", 10000),
+                new KeyValuePair<string, int>("2 sec", 20000),
+                new KeyValuePair<string, int>("3 sec", 30000),
+                new KeyValuePair<string, int>("4 sec", 40000),
+                new KeyValuePair<string, int>("5 sec", 50000),
+                new KeyValuePair<string, int>("6 sec", 60000)
+            };
+
+            if (Config.PingTimeout == 0)
+                Config.PingTimeout = 10000;
+
+            CbPingTimeout.DataSource = PingTimeout;
+            CbPingTimeout.ValueMember = "value";
+            CbPingTimeout.DisplayMember = "key";
+            CbPingTimeout.SelectedValue = Config.PingTimeout;
+        }
+
 
         private void UpdateGridSource()
         {
@@ -116,6 +139,7 @@ namespace Analysis
         private void BtnSave_Click(object sender, EventArgs e)
         {
             Config.PingTimer = (int)CbPingTimer.SelectedValue;
+            Config.PingTimeout = (int)CbPingTimeout.SelectedValue;
             Config.SaveOrUpdate();
         }
 
@@ -128,6 +152,11 @@ namespace Analysis
                 Config.LogPath = folderBrowserDialog1.SelectedPath;
                 LaLogPath.Text = Config.LogPath;
             }
+        }
+
+        private void BtnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

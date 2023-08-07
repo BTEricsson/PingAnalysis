@@ -15,6 +15,7 @@ namespace Business
         public NodeData GetNodeData { get { return traceData; } }
         public string Name { get { return traceData.Name; } set { traceData.Name = value; } }
         public int PingTimer { get { return traceData.PingTimer; } set { traceData.PingTimer = value; } }
+        public int PingTimeout { get { return traceData.PingTimeout; } set { traceData.PingTimeout = value; } }
         public string LogPath { get { return traceData.LogPath; } set { traceData.LogPath = value; } }
         public string LogPathAndFile { get { return LogPath + "\\" + logSubFolder + "\\" + logFile; } }
         public IList<Node> Nodes { get { return traceData.Nodes; } set { traceData.Nodes = value; } }

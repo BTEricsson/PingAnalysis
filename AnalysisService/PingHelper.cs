@@ -11,7 +11,8 @@ namespace AnalysisService
         private readonly Config config = new Config();
 
         public string DownIP = string.Empty;
-        public int GetTimer { get { return config.PingTimer; } }
+        public int GetPingTimer { get { return config.PingTimer; } }
+        public int GetPingTimeout { get { return config.PingTimeout; } }
         public string GetLogPathAndFile { get { return config.LogPathAndFile; } }
 
         public void InitPingNode()
@@ -106,7 +107,6 @@ namespace AnalysisService
 
         private IPStatus GetIPStatus(string IPAddress)
         {
-            const int timeout = 10000;
             const int maxTTL = 30;
             const int bufferSize = 32;
 
@@ -116,7 +116,7 @@ namespace AnalysisService
             using (var pinger = new Ping())
             {
                 PingOptions options = new PingOptions(maxTTL, false);
-                PingReply reply = pinger.Send(IPAddress, timeout, buffer, options);
+                PingReply reply = pinger.Send(IPAddress, GetPingTimeout, buffer, options);
 
                 return reply.Status;
             }
