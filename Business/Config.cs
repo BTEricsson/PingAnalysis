@@ -8,8 +8,9 @@ namespace Business
     public class Config
     {
         readonly string logFile = "PingLog_" + DateTime.Now.Date.ToString("yyyy") + ".txt";
-        readonly string logSubFolder = "Logs";  
-        readonly string filePathConfig = $@"{AppDomain.CurrentDomain.BaseDirectory}\PingConfig.Json";
+        readonly string logSubFolder = "Logs";
+        //readonly string filePathConfig = $@"{AppDomain.CurrentDomain.BaseDirectory}\PingConfig.Json";
+        readonly string filePathConfig = $@"C:\ProgramData\PingAnalys\PingConfig.Json";
         private static NodeData traceData = new NodeData();
 
         public NodeData GetNodeData { get { return traceData; } }
@@ -24,6 +25,14 @@ namespace Business
         {
             if (!File.Exists(filePathConfig))
                 return traceData;
+
+
+            var path = Directory.GetParent(filePathConfig).FullName;
+
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
 
             using (StreamReader r = new StreamReader(filePathConfig))
             {
@@ -44,8 +53,17 @@ namespace Business
         {
             if (traceData.Nodes == null)
                 return null;
-            try
+
+
+            var path = Directory.GetParent(filePathConfig).FullName;
+
+            if (!Directory.Exists(path))
             {
+                Directory.CreateDirectory(path);
+            }
+
+            try
+            {    
                 var options = new JsonSerializerOptions() { WriteIndented = true };
                 string jsonString = JsonSerializer.Serialize(traceData, options);
                 using (StreamWriter outputFile = new StreamWriter(filePathConfig))
