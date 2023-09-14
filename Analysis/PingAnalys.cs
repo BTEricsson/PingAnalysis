@@ -70,6 +70,12 @@ namespace Analysis
 
         private void UpdateRitchTextBoxWithPingLog()
         {
+            if(!File.Exists(config.LogPathAndFile))
+            {
+                RtbPingView.AddTexLineWithStatusColor("No data!");
+                return;
+            }
+
             int linesToView = 20;
             var allReadLines = File.ReadAllLines(config.LogPathAndFile).ToList();
             int allLines = allReadLines.Count;
